@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace DesignPattern.CreationalPatterns
+namespace DesignPattern.CreationalPatterns.Singleton
 {
     public sealed class Singleton
     {
@@ -15,7 +15,7 @@ namespace DesignPattern.CreationalPatterns
         private readonly Dictionary<string, object> config;
         private Singleton()
         {
-            var configJsonPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"CreationalPatterns\appsettings.json");
+            var configJsonPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"CreationalPatterns\Singleton\appsettings.json");
             if (!File.Exists(configJsonPath))
             {
                 throw new FileNotFoundException();
@@ -37,16 +37,6 @@ namespace DesignPattern.CreationalPatterns
                 }
 
                 return JsonConvert.DeserializeObject<EmailSetting>(config[key].ToString());
-
-                //switch (key)
-                //{
-                //    case "EmailSetting":
-                //        return JsonConvert.DeserializeObject<EmailSetting>(config[key].ToString());
-                //    case "ConnectionStrings":
-                //        return null;
-                //    default:
-                //        throw new ApplicationException("Data not found");  
-                //}
             }
         }
 
