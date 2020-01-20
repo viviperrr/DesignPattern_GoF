@@ -5,8 +5,11 @@ Goal
 
 Design Pattern
  * Creational Pattern
+    - Singleton
     - 
  * Structural Pattern
+    - Facade
     - 
  * Behavioral Pattern
+    - Iterator
     - 

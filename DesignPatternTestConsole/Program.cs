@@ -1,6 +1,7 @@
 ﻿using DesignPattern.BehavioralPatterns.Iterator;
 using DesignPattern.CreationalPatterns.Singleton;
 using DesignPattern.Model;
+using DesignPattern.StructuralPatterns.Facade;
 using System;
 
 namespace DesignPatternTestConsole
@@ -10,30 +11,43 @@ namespace DesignPatternTestConsole
         static void Main(string[] args)
         {
             //RunSingleton();
-            RunIterator();
+            RunFacade();
+            //RunIterator();
         }
 
+        #region Creational
         static void RunSingleton()
         {
             EmailSetting emailSetting = Singleton.Instance["EmailSetting"] as EmailSetting;
         }
+        #endregion
 
+        #region Structural
+        static void RunFacade()
+        {
+            Facade facade = new Facade();
+            int productId = 1234;
+            facade.LoadProductPicture(productId);
+        }
+        #endregion
+
+        #region Behavioral
         static void RunIterator()
         {
-            XCollection coll = new XCollection(); 
-            coll.Add("A"); 
-            coll.Add("B"); 
-            coll.Add("C"); 
-            coll.Add("D"); 
+            XCollection coll = new XCollection();
+            coll.Add("A");
+            coll.Add("B");
+            coll.Add("C");
+            coll.Add("D");
             coll.Add("E");
 
-            IXIterator it = coll.GetIterator(); 
+            IXIterator it = coll.GetIterator();
             object o;
             // Iterator outputs only the even-numbered data.
             // A C E
-            while ((o = it.Next()) != null) 
-            { 
-                Console.WriteLine(o); 
+            while ((o = it.Next()) != null)
+            {
+                Console.WriteLine(o);
             }
 
             coll.Add("F");
@@ -45,5 +59,6 @@ namespace DesignPatternTestConsole
                 Console.WriteLine(o);
             }
         }
+        #endregion
     }
 }
