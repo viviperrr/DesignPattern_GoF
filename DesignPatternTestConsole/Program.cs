@@ -1,4 +1,5 @@
-﻿using DesignPattern.BehavioralPatterns.Iterator;
+﻿using DesignPattern.BehavioralPatterns.ChainOfResponsibility;
+using DesignPattern.BehavioralPatterns.Iterator;
 using DesignPattern.CreationalPatterns.Singleton;
 using DesignPattern.Model;
 using DesignPattern.StructuralPatterns.Facade;
@@ -11,7 +12,8 @@ namespace DesignPatternTestConsole
         static void Main(string[] args)
         {
             //RunSingleton();
-            RunFacade();
+            //RunFacade();
+            RunChainOfResponsibility();
             //RunIterator();
         }
 
@@ -58,6 +60,26 @@ namespace DesignPatternTestConsole
             {
                 Console.WriteLine(o);
             }
+        }
+
+        static void RunChainOfResponsibility()
+        {
+            Log log = new Log()
+            {
+                LogType = LogType.Error,
+                Message = "Not Found"
+            };
+
+            LogProcessor level1 = new Level1();
+            LogProcessor level2 = new Level2();
+            LogProcessor level3 = new Level3();
+            LogProcessor level4 = new Level4();
+
+            level1.NextChain = level2;
+            level2.NextChain = level3;
+            level3.NextChain = level4;
+
+            level1.WriteLog(log);
         }
         #endregion
     }
