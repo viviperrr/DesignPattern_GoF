@@ -1,0 +1,7 @@
+﻿{
+  "Username": "kyle",
+  "Password": "Kyle1234",
+  "MailServer": "smtp.gmail.com",
+  "MailPort": 587,
+  "EnableSSL": true
+}
